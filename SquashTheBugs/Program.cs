@@ -45,10 +45,13 @@ namespace SquashTheBugs
                 // output the calculation based on the numbers
                 // Console.WriteLine(i / (i - 1));
                 // runtime error: DivideByZero with i = 1 if i is declared as int instead of double
-                try {
+                try 
+                {
                     // output calculation based on the numbers
                     Console.WriteLine(i / (i - 1));
-                } catch (DivideByZeroException) {
+                } 
+                catch (DivideByZeroException)
+                {
                     // tell the user that a divide by zero error occurs
                     Console.WriteLine("Error! Cannot divide by zero!");
                 }
