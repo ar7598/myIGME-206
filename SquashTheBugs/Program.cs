@@ -30,12 +30,12 @@ namespace SquashTheBugs
 
             // loop thorugh the numbers 1 through 10
             // for (i = 1; i < 10; ++i)
-            // syntax error: need to include 10 within the count, and the loop needs to check for i before incrementing 
+            // logic error: need to include 10 within the count, and the loop needs to check for i before incrementing 
             for (i = 1; i <= 10; i++)
             {
                 // declare string to hold all numbers
                 // string allNumbers = null;
-                // allNumbers must be declared outside of the for loop as it is called outside of the loop at the end of the program
+                // compile error: allNumbers must be declared outside of the for loop as it is called outside of the loop at the end of the program
 
                 // output explanation of calculation
                 // Console.Write(i + "/" + i - 1 + " = ");
@@ -66,7 +66,7 @@ namespace SquashTheBugs
 
             // output all numbers which have been processed
             // Console.WriteLine("These numbers have been processed: " allNumbers);
-            // logic error: missing + between end of quotation and string variable allNumbers
+            // compile error: missing + between end of quotation and string variable allNumbers
             Console.WriteLine("These numbers have been processed: " + allNumbers);
         }
     }
