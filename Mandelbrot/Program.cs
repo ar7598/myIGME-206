@@ -104,10 +104,10 @@ namespace Mandelbrot
             }
 
             // calculate the value for decrementing imagCoord in 48 values
-            double imagDec = (Math.Abs(userImagCoord) + Math.Abs(imagCoordEnd)) / 48;
+            double imagDec = (Math.Abs(userImagCoord) + Math.Abs(imagCoordEnd)) / 47;
 
             // calculate the incrementing value for realCoord in 80 values
-            double realInc = (Math.Abs(realCoordEnd) + Math.Abs(userRealCoord)) / 80; 
+            double realInc = (Math.Abs(realCoordEnd) + Math.Abs(userRealCoord)) / 79; 
 
 
             for (double imagCoord = userImagCoord; imagCoord >= imagCoordEnd; imagCoord -= imagDec)
