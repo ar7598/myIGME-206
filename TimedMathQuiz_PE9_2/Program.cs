@@ -238,6 +238,9 @@ namespace TimedMathQuiz_PE9_2
 
             TimeUp:
 
+                //tell the user the answer to the question
+                Console.WriteLine("The answer was {0}", nAnswer);
+
                 // stop the timer to reset it for the next loop
                 timer.Stop();
 
