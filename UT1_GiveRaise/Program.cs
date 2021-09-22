@@ -16,6 +16,7 @@ namespace UT1_GiveRaise
         // Purpose: Ask the user to input their name
         //          Call a function to check to see if the user is qualified for a raise
         //          Congratulate the user if they got a raise and display their salary
+        // Restrictions: None
         static void Main(string[] args)
         {
             // declare a string for the user's name
