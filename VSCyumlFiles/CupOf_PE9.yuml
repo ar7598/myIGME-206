@@ -1,0 +1,19 @@
+// {type:class}
+// {generate:true}
+// {direction:topDown}
+
+[A:HotDrink|Drink():bool;AddMilk():byte;AddSugar():byte;milk:byte;sugar:byte]
+
+[I:ICup|Refill();Wash();color:string;volume:double]
+
+[CupOfCoffee|beanType:string]
+
+[A:HotDrink] <-.- [CupOfCoffee]
+[I:ICup] ^ [CupOfCoffee]
+
+[CupOfTea|leafType:string]
+
+[A:HotDrink] <-.- [CupOfTea]
+[I:ICup] ^ [CupOfTea]
+
+
