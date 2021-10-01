@@ -24,7 +24,7 @@ namespace MyClass_PE12_Q123
             return myString;
         }
 
-        // Field: MyString
+        // Property: MyString
         // Purpose: make the private field myString a write-only field
         // Restrictions: the field can only set the value of myString, but can't return the value
         public string MyString
