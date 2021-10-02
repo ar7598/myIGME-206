@@ -50,7 +50,7 @@ namespace CourseLib
                 }
                 catch 
                 {
-                    // checks for duplicates
+                    // sortedList[courseCode] = null;
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace CourseLib
             Random rand = new Random();
 
             //generate courses IGME-200 through IGME-299
-            for(int i = 200; i <300; i++) 
+            for(int i = 200; i < 300; ++i) 
             {
                 // use constructor to create new course object with code and description
                 thisCourse = new Course(($"IGME-{i}"), ($"Description for IGME-{i}"));
@@ -105,7 +105,7 @@ namespace CourseLib
                 thisCourse.schedule = thisSchedule;
 
                 // add this course to the SortedList
-                this[thisCourse.courseCode] = thisCourse;
+                this[($"IGME-{i}")] = thisCourse;
             }
         }
     }
