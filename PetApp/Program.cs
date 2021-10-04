@@ -330,6 +330,7 @@ namespace PetApp
                     }
                     else
                     {
+                        // add a cat
                         Console.WriteLine("You bought a cat!");
 
                         Console.Write("Cat's Name => ");
@@ -361,17 +362,23 @@ namespace PetApp
                 } 
                 else 
                 {
+                    // select a random pet from the list
                     thisPet = pets[rand.Next(0, pets.Count)];
+
+                    // if the pet location is null, then skip this loop, otherwise do an activity
                     if (thisPet == null)
                     {
                         continue;
                     }
                     else 
                     {
+                        // check to see if the type of pet is a dog or a cat
                         if (thisPet.GetType().Equals(typeof(Dog)))
                         {
+                            // set interface variable for Dog to thisPet
                             iDog = (Dog)thisPet;
 
+                            // create a random number to do an activity
                             int randNum = rand.Next(0, 5);
 
                             if (randNum == 0)
@@ -397,8 +404,10 @@ namespace PetApp
                         }
                         else 
                         {
+                            // set interface variable for Cat to thisPet
                             iCat = (Cat)thisPet;
 
+                            // create a random number to do an activity
                             int randNum = rand.Next(0, 5);
 
                             if (randNum == 0)
