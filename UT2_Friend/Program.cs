@@ -18,7 +18,7 @@ namespace UT2_Friend
         public string address;
 
         // Method: Clone
-        // Purpose: Create a deep clone of a Friend object
+        // Purpose: Create a copy of a Friend object
         // Restrictions: None
         public object Clone() 
         {
