@@ -1,0 +1,21 @@
+// {type:class}
+// {generate: true}
+// {direction: topDown}
+
+[+A:Art|-underDrawing:string|+UnderDrawing:string;+CreateShape():v;+Blend():a]
+
+[+I:IMix|OnPalette();]
+
+[+I:ICanvas|MyCanvas();]
+
+[+Oil|+OnPalette();+MyCanvas();+CreateShape():o;+Blend():o]
+
+[+A:Art] <-.- [+Oil]
+[+I:IMix] ^ [+Oil]
+[+I:ICanvas] ^ [+Oil]
+
+[+Watercolor|+OnPalette();+MyCanvas();+CreateShape():o;+Blend():o]
+
+[+A:Art] <-.- [+Watercolor]
+[+I:IMix] ^ [+Watercolor]
+[+I:ICanvas] ^ [+Watercolor]
