@@ -8,13 +8,13 @@
 
 [+I:ICanvas|MyCanvas();]
 
-[+Oil|+OnPalette();+MyCanvas();+CreateShape():o;+Blend():o]
+[+Oil||+OnPalette();+MyCanvas();+CreateShape():o;+Blend():o]
 
 [+A:Art] <-.- [+Oil]
 [+I:IMix] ^ [+Oil]
 [+I:ICanvas] ^ [+Oil]
 
-[+Watercolor|+OnPalette();+MyCanvas();+CreateShape():o;+Blend():o]
+[+Watercolor||+OnPalette();+MyCanvas();+CreateShape():o;+Blend():o]
 
 [+A:Art] <-.- [+Watercolor]
 [+I:IMix] ^ [+Watercolor]
