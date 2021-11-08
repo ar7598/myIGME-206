@@ -156,11 +156,20 @@ namespace DontDiePart2
             string playerExitChoice = null;
             bool validExit = false;
 
+            // used to check if the player is changing rooms or backing out of looking for exits/trivia
+            int occupiedRoom = 0;
+
             // while the player is alive, loop through the game elements
             while (isAlive)
             {
-                HealthDrop(ref currentRoom, ref playerHealth);
+                if (currentRoom != occupiedRoom)
+                {
+                    // Drop the player's hp due to the change in room
+                    HealthDrop(ref currentRoom, ref playerHealth);
 
+                    // set the occupiedRoom to the currentRoom the player is in
+                    occupiedRoom = currentRoom;
+                }
                 // Print the current HP of the player
                 Console.WriteLine("Current Health: " + playerHealth);
                 Console.WriteLine(" ");
@@ -220,7 +229,17 @@ namespace DontDiePart2
                                 try
                                 {
                                     nPlayerHPWager = Int32.Parse(sPlayerHPWager);
-                                    isWagerNumValid = true;
+
+                                    // check to see if the wager is greater than the player's current health
+                                    if (nPlayerHPWager > playerHealth)
+                                    {
+                                        Console.WriteLine("\"You cannot wager more life than you have!\"");
+                                        isWagerNumValid = false;
+                                    }
+                                    else
+                                    {
+                                        isWagerNumValid = true;
+                                    }
                                 }
                                 catch
                                 {
@@ -343,9 +362,8 @@ namespace DontDiePart2
                             Console.WriteLine("Current Health: " + playerHealth);
                             Console.WriteLine(" ");
                         }
-
-                        // check the answer of the user
-                        if (playerTriviaAnswer == triviaToAsk.results[0].correct_answer)
+                        // check to see if the answer is correct when time has not ran out
+                        else if (playerTriviaAnswer == triviaToAsk.results[0].correct_answer)
                         {
                             Console.WriteLine("\"Ah! You got it correct. Congratulations!\"");
                             Console.WriteLine("\"Here is your reward\"");
@@ -374,6 +392,7 @@ namespace DontDiePart2
                     {
                         Console.WriteLine("Which exit will you choose?");
                         Console.WriteLine("North(N), South(S), East(E), or West(W)?");
+                        Console.WriteLine("Go Back (B)");
                         playerExitChoice = Console.ReadLine();
 
                         // Player chooses North (N)
@@ -475,6 +494,11 @@ namespace DontDiePart2
                                 // set validExit to true to escape the loop
                                 validExit = true;
                             }
+                        }
+                        // check to see if the player wants to go back for trivia before they leave the room, or if they can't leave the room yet
+                        else if (playerExitChoice.ToLower().Equals("b")) 
+                        {
+                            validExit = true;
                         }
                         else 
                         {
@@ -680,112 +704,32 @@ namespace DontDiePart2
         // Purpose: Checks the current room of the player and tells them the available exits
         // Restrictions: None
         public static void AvailableExits(ref int currentRoom, ref int playerHealth) 
-        { 
-            // A
-            if(currentRoom == 0) 
-            {
-                if (playerHealth > 0)
-                {
-                    // A
-                    Console.WriteLine("There is a door to the North.");
-                    Console.WriteLine("There is a door to the East.");
-                }
+        {
+            // get an array of ints of available rooms given the current room
+            int[] availableExits = lGraph[currentRoom];
 
-                if (playerHealth > 2)
-                {
-                    // B
-                    Console.WriteLine("There is a door to the South.");
-                }
+            // If the player is able to travel North
+            if(availableExits[0] != -1 && (playerHealth - wGraph[currentRoom][0]) > 0) 
+            {
+                Console.WriteLine("There is a door to the North.");
             }
-            // B
-            else if(currentRoom == 1) 
-            {
-                if (playerHealth > 2)
-                {
-                    // C
-                    Console.WriteLine("There is a door to the South.");
-                }
 
-                if (playerHealth > 3)
-                {
-                    // D
-                    Console.WriteLine("There is a door to the East.");
-                }
+            // If the player is able to travel South
+            if (availableExits[1] != -1 && (playerHealth - wGraph[currentRoom][1]) > 0)
+            {
+                Console.WriteLine("There is a door to the South.");
             }
-            // C
-            else if(currentRoom == 2) 
-            {
-                if (playerHealth > 2)
-                {
-                    // B
-                    Console.WriteLine("There is a door to the North.");
-                }
 
-                if (playerHealth > 20)
-                {
-                    // H
-                    Console.WriteLine("There is a door to the South.");
-                }
+            // If the player is able to travel East
+            if (availableExits[2] != -1 && (playerHealth - wGraph[currentRoom][2]) > 0)
+            {
+                Console.WriteLine("There is a door to the East.");
             }
-            // D
-            else if(currentRoom == 3) 
-            {
-                if (playerHealth > 1)
-                {
-                    // E
-                    Console.WriteLine("There is a dooor to the North.");
-                }
 
-                if (playerHealth > 3)
-                {
-                    // B
-                    Console.WriteLine("There is a door to the West.");
-                }
-
-                if (playerHealth > 4)
-                {
-                    // F
-                    Console.WriteLine("There is a door to the East.");
-                }
-
-                if (playerHealth > 5)
-                {
-                    // C
-                    Console.WriteLine("There is a door to the South.");
-                }
-            }
-            // E
-            else if(currentRoom == 4) 
+            // If the player is able to travel West
+            if (availableExits[3] != -1 && (playerHealth - wGraph[currentRoom][3]) > 0)
             {
-                if (playerHealth > 3)
-                {
-                    // F
-                    Console.WriteLine("There is a door to the South.");
-                }
-            }
-            // F
-            else if(currentRoom == 5) 
-            {
-                if (playerHealth > 1)
-                {
-                    // G
-                    Console.WriteLine("There is a door to the East.");
-                }
-            }
-            // G
-            else if(currentRoom == 6) 
-            {
-                if (playerHealth > 0)
-                {
-                    // E
-                    Console.WriteLine("There is a door to the North.");
-                }
-
-                if (playerHealth > 2)
-                {
-                    // H
-                    Console.WriteLine("There is a door to the South.");
-                }
+                Console.WriteLine("There is a door to the West.");
             }
         }
 
