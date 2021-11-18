@@ -148,9 +148,58 @@ namespace BTree
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            // This button will be used for UT3 question 6
+            // insert a specific list of numbers into a binary tree
+
+            this.richTextBox1.Clear();
+
+            // array of the numbers to insert into the tree;
+            int[] treeNumbers = new int[] {1, 5, 15, 20, 21, 22, 23, 24, 25, 30, 35, 37, 40, 55, 60};
+
+            BTree node = null;
+            BTree root = null;
+
+            for(int i = 0; i < treeNumbers.Length; ++i) 
+            {
+                node = new BTree(treeNumbers[i], root);
+
+                // if i is 0, then that is the root of the tree
+                if(i == 0) 
+                {
+                    root = node;
+                }
+            }
+
+            this.richTextBox1.Text += "\n";
+
+            // Traverse the tree in ascending order while loading the numbers into a list
+            BTree.TraverseAscending(root);
+
+            this.richTextBox1.Text += "\n";
+
+            List<int> treeList = new List<int>(treeNumbers);
+
+            // read the numbers out of the list and insert them into a new and balanced binary tree
+
+            BTree newNode = null;
+            BTree newRoot = null;
+
+            // prime the tree with numbers to help balance the tree evenly
+            newNode = new BTree(24, newRoot, false);
+            newRoot = newNode;
+
+            newNode = new BTree(17, newRoot, false);
+            newNode = new BTree(38, newRoot, false);
+
+            // load the numbers from the list into the tree so that the tree will be balanced
+            foreach(int n in treeList) 
+            {
+                newNode = new BTree(n, newRoot);
+            }
+
             // Exercise #1
             // insert 30 random numbers between 1 and 51
-
+            /*
             this.richTextBox1.Clear();
 
             BTree node = null;
@@ -170,8 +219,12 @@ namespace BTree
 
             this.richTextBox1.Text += "\n";
             BTree.TraverseAscending(root);
+            */
 
-            VisualizeBinaryTree visualizeBinaryTree = new VisualizeBinaryTree(root);
+            this.richTextBox1.Text += "\n";
+            BTree.TraverseAscending(newRoot);
+
+            VisualizeBinaryTree visualizeBinaryTree = new VisualizeBinaryTree(newRoot);
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -422,7 +475,6 @@ namespace BTree
 
         // keep track of last counter to set this.id
         private static int nLastCntr;
-
 
         //////////////////////////////////////////////////////////
         // overload all operators to compare BTree nodes by int or string data
